@@ -44,7 +44,12 @@ class Auth extends CI_Controller {
         $query = $this->db->get_where('users', array('phone' => $phone));
         $num_rows = $query->num_rows();
         if ($num_rows == 1) { // user exists, Login 
-            die('Loggin in');
+            if (emflx_login(array('phone' => $phone))) {
+                redirect('home');
+            }
+            else {
+                die('Unable to login');
+            }
         }
         else if ($num_rows < 1) { // New user, signup
             $user_insert_data = array(
@@ -55,6 +60,14 @@ class Auth extends CI_Controller {
                 $uid = $this->db->insert_id();
                 die('Registered with id ' . $uid);
                 // Send verification email as well
+
+                // Login it
+                if (emflx_login(array('uid' => $uid, 'phone' => $phone))) {
+                    redirect('home');
+                }
+                else {
+                    die('Unable to login new user');
+                }
             }
             else {
                 die('Oops! An internal error occured.');
