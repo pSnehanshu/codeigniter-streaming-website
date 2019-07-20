@@ -2,7 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-    
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Object_model');
+	}
+	
+	// Main page
 	public function index()
 	{
 		$this->load->view('layouts/header');
@@ -10,9 +16,9 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
+	// Category listing
 	public function category($catslug = 'all') {
 		$ref = $this->input->get('ref');
-		$this->load->model('Object_model');
 		$objects = $this->Object_model->get_children($catslug);
 
 		$this->load->view('layouts/header');
@@ -23,6 +29,25 @@ class Home extends CI_Controller {
 			'next_ref' => $ref.'/'.$catslug
 		));
 		$this->load->view('layouts/footer');
+	}
+
+	// Redirects to correct view page for any object
+	public function go2object($id = 1) {
+		$ref = $this->input->get('ref');
+		$object = $this->Object_model->get($id);
+
+		// If object doesn't exists, then show 404
+		if ($object == null) {
+			show_404();
+		}
+		
+		switch($object->type) {
+			case 'video': redirect('home/watch/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'show': redirect('home/show/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'season': redirect('home/season/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'category': redirect('home/category/'.$object->slug.'?ref='.urlencode($ref)); break;
+			default: show_404();
+		}
 	}
 
 	public function page($pageslug = 'all') {
