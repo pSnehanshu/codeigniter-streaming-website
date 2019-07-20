@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 	}
 
 	public function category($catslug = 'all') {
+		$ref = $this->input->get('ref');
 		$this->load->model('Object_model');
 		$objects = $this->Object_model->get_children($catslug);
 
@@ -18,8 +19,8 @@ class Home extends CI_Controller {
 		$this->load->view('category', array(
 			'objects' => $objects,
 			'slug' => $catslug,
-			'ref' => explode('/', $this->input->get('ref')),
-			'next_ref' => $this->input->get('ref').'/'.$catslug
+			'ref' => explode('/', $ref),
+			'next_ref' => $ref.'/'.$catslug
 		));
 		$this->load->view('layouts/footer');
 	}
