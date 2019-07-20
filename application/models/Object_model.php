@@ -2,10 +2,32 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Object_model extends CI_Model {
-    public function get($id = 1) {
+    public function get($id = 1, $expected_type = false) {
         $query = $this->db->get_where('objects', array('id' => $id));
-        if ($query->num_rows() == 1)
-            return $query->result()[0];
+        if ($query->num_rows() == 1){
+            $object = $query->result()[0];
+            // Check if the object is of expected type
+            if ($expected_type != false) {
+                if ($object->type != $expected_type)
+                    return null;
+            }
+            return $object;
+        }
+        else
+            return null;
+    }
+
+    public function get_slug($slug = 1, $expected_type = false) {
+        $query = $this->db->get_where('objects', array('slug' => $slug));
+        if ($query->num_rows() == 1){
+            $object = $query->result()[0];
+            // Check if the object is of expected type
+            if ($expected_type != false) {
+                if ($object->type != $expected_type)
+                    return null;
+            }
+            return $object;
+        }
         else
             return null;
     }

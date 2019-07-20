@@ -17,16 +17,16 @@ class Home extends CI_Controller {
 	}
 
 	// Category listing
-	public function category($catslug = 'all') {
+	public function category($slug) {
 		$ref = $this->input->get('ref');
-		$objects = $this->Object_model->get_children($catslug);
+		$objects = $this->Object_model->get_children($slug);
 
 		$this->load->view('layouts/header');
 		$this->load->view('category', array(
 			'objects' => $objects,
-			'slug' => $catslug,
+			'slug' => $slug,
 			'ref' => explode('/', $ref),
-			'next_ref' => $ref.'/'.$catslug
+			'next_ref' => $ref.'/'.$slug
 		));
 		$this->load->view('layouts/footer');
 	}
@@ -48,6 +48,21 @@ class Home extends CI_Controller {
 			case 'category': redirect('home/category/'.$object->slug.'?ref='.urlencode($ref)); break;
 			default: show_404();
 		}
+	}
+
+	// View page for a show. e.g. Game of Thrones
+	public function show($slug) {
+		$ref = $this->input->get('ref');
+		$object = $this->Object_model->get_slug($slug, 'show');
+		
+		// If object doesn't exists, then show 404
+		if (!$object) {
+			show_404();
+		}
+
+		$this->load->view('layouts/header');
+		$this->load->view('show', array('show' => $object));
+		$this->load->view('layouts/footer');
 	}
 
 	public function page($pageslug = 'all') {
