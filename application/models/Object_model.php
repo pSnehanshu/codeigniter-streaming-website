@@ -10,11 +10,13 @@ class Object_model extends CI_Model {
             return null;
     }
 
+
 	public function get_children($slug, $start = 0, $num = 10) {
         $this->db->select('objects.*');
         $this->db->from('objects, object_heirarchy');
         $this->db->where('object_heirarchy.parent = (SELECT id FROM objects WHERE slug = '.$this->db->escape($slug).')');
         $this->db->where('object_heirarchy.child = objects.id');
+        $this->db->order_by('object_heirarchy.child_order', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
