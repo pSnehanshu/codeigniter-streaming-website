@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 	}
 
 	// Redirects to correct view page for any object
-	public function go2object($id = 1) {
+	public function goto($id = 1) {
 		$ref = $this->input->get('ref');
 		$object = $this->Object_model->get($id);
 

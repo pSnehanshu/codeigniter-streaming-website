@@ -20,7 +20,7 @@
 
     <?php foreach ($objects as $object) : ?>
         <div class="p-2">
-            <a href="<?= site_url('home/go2object/' . $object->id . '?ref=' . urlencode($next_ref)) ?>">
+            <a href="<?= site_url('home/goto/' . $object->id . '?ref=' . urlencode($next_ref)) ?>">
                 <img src="<?= $object->thumbnail ?>"><br>
                 <p><?= $object->title ?></p>
             </a>
