@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <!-- header -->
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -44,5 +44,5 @@
     <!-- header end -->
 
     <!-- main -->
-    <main role="main" style="margin-top: 70px;">
+    <main role="main" class="px-5" style="margin-top: 70px;">
         
