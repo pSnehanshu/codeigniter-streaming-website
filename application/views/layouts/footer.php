@@ -2,6 +2,8 @@
     </main>
     <!-- main end -->
 
+    <div style="height: 100px; padding: 70px;"></div>
+
     <!-- FOOTER -->
     <footer class="mt-auto">
         <div class="container">
