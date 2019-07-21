@@ -44,5 +44,5 @@
     <!-- header end -->
 
     <!-- main -->
-    <main role="main" class="px-5" style="margin-top: 70px;">
+    <main role="main" style="margin-top: 56px;">
         
