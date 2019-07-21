@@ -60,8 +60,20 @@ class Home extends CI_Controller {
 			show_404();
 		}
 
+		//Get all the seasons
+		$seasons = $this->Object_model->get_children($slug, 'season');
+
+		// Get the shows of the selected season
+		$selected_season = $this->input->get('seasonid');
+		if (!$selected_season) { // No selected season
+			// Let the first season be the selected season
+			if (count($seasons) > 0) {
+				$selected_season = $seasons[0]->id;
+			}
+		}
+		
 		$this->load->view('layouts/header');
-		$this->load->view('show', array('show' => $object));
+		$this->load->view('show', array('show' => $object, 'seasons' => $seasons, 'selected_season' => $selected_season));
 		$this->load->view('layouts/footer');
 	}
 
