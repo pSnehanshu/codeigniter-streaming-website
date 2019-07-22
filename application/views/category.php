@@ -1,12 +1,11 @@
 <div class="container-fluid py-3">
-    <?php // Breadcrumb 
-    ?>
+    <?php // Breadcrumb ?>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="<?= site_url('home') ?>">Home</a>
             </li>
-            <?php foreach ($ref as $step) : ?>
+            <?php foreach ($ref as $step) : if (empty(trim($step))) continue; ?>
                 <li class="breadcrumb-item">
                     <a href="<?= site_url('home/slug/' . $step) ?>"><?= htmlentities($step) ?></a>
                 </li>
@@ -15,8 +14,7 @@
         </ol>
     </nav>
 
-    <?php // Children 
-    ?>
+    <?php // Children ?>
     <div class="d-flex">
 
         <?php foreach ($objects as $object) : ?>
