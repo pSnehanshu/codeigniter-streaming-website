@@ -78,10 +78,16 @@ class Home extends CI_Controller {
 		$this->load->view('season_video_list_ajax', array('videos' => $videos));
 	}
 
-	public function page($pageslug = 'all') {
-		//$this->load->view('layouts/header');
-		echo '<h1>' . $pageslug . '</h1>';
-		//$this->load->view('layouts/footer');
+	public function page($slug) {
+		$this->load->model('Page_model');
+		$page = $this->Page_model->get_slug($slug);
+		if (!$page) {
+			show_404();
+		}
+
+		$this->load->view('layouts/header');
+		$this->load->view('page', array('page' => $page));
+		$this->load->view('layouts/footer');
 	}
 
 	// Redirects to correct view page for any object based on id
