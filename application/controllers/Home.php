@@ -31,26 +31,6 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
-	// Redirects to correct view page for any object
-	public function goto($id = 1) {
-		$ref = $this->input->get('ref');
-		$object = $this->Object_model->get($id);
-
-		// If object doesn't exists, then show 404
-		if ($object == null) {
-			show_404();
-		}
-		
-		switch($object->type) {
-			case 'video': redirect('home/watch/'.$object->slug.'?ref='.urlencode($ref)); break;
-			case 'show': redirect('home/show/'.$object->slug.'?ref='.urlencode($ref)); break;
-			case 'season': redirect('home/season/'.$object->slug.'?ref='.urlencode($ref)); break;
-			case 'category': redirect('home/category/'.$object->slug.'?ref='.urlencode($ref)); break;
-			default: show_404();
-		}
-	}
-
-
 	// Video player page
 	public function watch($slug) {
 		$video = $this->Object_model->get_slug($slug, 'video');
@@ -102,5 +82,43 @@ class Home extends CI_Controller {
 		//$this->load->view('layouts/header');
 		echo '<h1>' . $pageslug . '</h1>';
 		//$this->load->view('layouts/footer');
+	}
+
+	// Redirects to correct view page for any object based on id
+	public function goto($id = 1) {
+		$ref = $this->input->get('ref');
+		$object = $this->Object_model->get($id);
+
+		// If object doesn't exists, then show 404
+		if ($object == null) {
+			show_404();
+		}
+		
+		switch($object->type) {
+			case 'video': redirect('home/watch/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'show': redirect('home/show/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'season': redirect('home/season/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'category': redirect('home/category/'.$object->slug.'?ref='.urlencode($ref)); break;
+			default: show_404();
+		}
+	}
+	
+	// Redirects to correct view page for any object based on slug
+	public function slug($slug) {
+		$ref = $this->input->get('ref');
+		$object = $this->Object_model->get_slug($slug);
+
+		// If object doesn't exists, then show 404
+		if ($object == null) {
+			show_404();
+		}
+		
+		switch($object->type) {
+			case 'video': redirect('home/watch/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'show': redirect('home/show/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'season': redirect('home/season/'.$object->slug.'?ref='.urlencode($ref)); break;
+			case 'category': redirect('home/category/'.$object->slug.'?ref='.urlencode($ref)); break;
+			default: show_404();
+		}
 	}
 }

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Object_model extends CI_Model {
+    
     public function get($id = 1, $expected_type = false) {
         $query = $this->db->get_where('objects', array('id' => $id));
         if ($query->num_rows() == 1){
