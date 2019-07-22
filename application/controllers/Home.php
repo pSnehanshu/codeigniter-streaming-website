@@ -50,6 +50,21 @@ class Home extends CI_Controller {
 		}
 	}
 
+
+	// Video player page
+	public function watch($slug) {
+		$video = $this->Object_model->get_slug($slug, 'video');
+
+		// If video doesn't exists, then show 404
+		if (!$video) {
+			show_404();
+		}
+
+		$this->load->view('layouts/header');
+		$this->load->view('video_watch', array('video' => $video));
+		$this->load->view('layouts/footer');
+	}
+
 	// View page for a show. e.g. Game of Thrones
 	public function show($slug) {
 		$ref = $this->input->get('ref');
