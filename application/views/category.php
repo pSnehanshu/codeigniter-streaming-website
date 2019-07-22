@@ -22,7 +22,7 @@
         <?php foreach ($objects as $object) : ?>
             <div class="p-2">
                 <a href="<?= site_url('home/goto/' . $object->id . '?ref=' . urlencode($next_ref)) ?>">
-                    <img src="<?= $object->thumbnail ?>" height="200"><br>
+                    <img src="<?= $object->thumbnail ?>" style="max-height:200px;" class="img-thumbnail"><br>
                     <p><?= $object->title ?></p>
                 </a>
             </div>
