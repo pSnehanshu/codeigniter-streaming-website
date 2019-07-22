@@ -15,7 +15,7 @@
 <body class="d-flex flex-column h-100">
     <!-- header -->
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="border-bottom: solid 1px #555;">
             <a class="navbar-brand" href="<?= site_url('home') ?>">EIMIFLIX</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,6 +38,9 @@
                         <a class="nav-link" href="<?= site_url('home/category/movies') ?>">Movies</a>
                     </li>
                 </ul>
+                <div class="mt-2 mt-md-0 ml-2 ml-md-0">
+                    <img src="https://www.gravatar.com/avatar/werddfees?d=mp&s=40" class="rounded">
+                </div>
             </div>
         </nav>
     </header>
@@ -45,4 +48,3 @@
 
     <!-- main -->
     <main role="main" style="margin-top: 56px;">
-        
