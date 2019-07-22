@@ -77,6 +77,12 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
+	public function season_ajax($id) {
+		//Get all the video
+		$videos = $this->Object_model->get_children_by_id($id, 'video');
+		$this->load->view('season_video_list_ajax', array('videos' => $videos));
+	}
+
 	public function page($pageslug = 'all') {
 		//$this->load->view('layouts/header');
 		echo '<h1>' . $pageslug . '</h1>';

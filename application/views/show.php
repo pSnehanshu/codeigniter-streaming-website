@@ -1,7 +1,7 @@
 <div class="container-fluid bg-dark text-light p-5">
     <div class="row">
         <div class="col">
-            <div>
+            <div class="mb-3">
                 <h1><?= htmlentities($show->title) ?></h1>
                 <p><?= htmlentities($show->description) ?></p>
                 <a href="#" class="btn btn-outline-light">Play S1E1</a>
@@ -33,7 +33,7 @@
 ?>
 <div class="container my-5" id="episodes-holder">
     <div class="text-center">
-        <div class="spinner-grow" role="status">
+        <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
@@ -45,6 +45,6 @@ $(function (){
     <?php if ($selected_season):?>
     $('#episodes-holder').load("<?=site_url('home/season_ajax/'.$selected_season)?>");
     <?php endif;?>
-    
+
 });
 </script>
