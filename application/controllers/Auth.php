@@ -19,6 +19,10 @@ class Auth extends CI_Controller {
         $app_id = '343289586591707';
         $secret = 'b115e952f32110e6260034042fb1d9f6';
         $version = 'v1.0'; // 'v1.1' for example
+        $next = 'home';
+        if (isset($_POST['next'])){
+            $next = $_POST['next'];
+        }
 
         // Exchange authorization code for access token
         $token_exchange_url = 'https://graph.accountkit.com/' .$version .'/access_token?'.
@@ -45,7 +49,7 @@ class Auth extends CI_Controller {
         $num_rows = $query->num_rows();
         if ($num_rows == 1) { // user exists, Login 
             if (emflx_login(array('phone' => $phone))) {
-                redirect('home');
+                redirect($next);
             }
             else {
                 die('Unable to login');
@@ -63,7 +67,7 @@ class Auth extends CI_Controller {
 
                 // Login it
                 if (emflx_login(array('uid' => $uid, 'phone' => $phone))) {
-                    redirect('home');
+                    redirect($next);
                 }
                 else {
                     die('Unable to login new user');
