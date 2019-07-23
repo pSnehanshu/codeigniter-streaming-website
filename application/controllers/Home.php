@@ -127,4 +127,17 @@ class Home extends CI_Controller {
 			default: show_404();
 		}
 	}
+
+	public function user_avatar_markup() {
+		$user = eflx_current_user();
+		if (!$user) {
+			// Not logged in, show login button
+			$markup = $this->load->view('login_btn', array(), true);
+		} else {
+			// User is logged in, show user avatar
+			$markup = $this->load->view('banner_avatar', array('user' => $user), true);
+		}
+
+		$this->load->view('jsonp', array('data' => $markup, 'fn' => 'setUserAvatar'));
+	}
 }

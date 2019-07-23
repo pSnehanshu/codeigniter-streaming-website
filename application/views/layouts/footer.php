@@ -12,6 +12,8 @@
         </div>
     </footer>
     <!-- FOOTER end -->
+
+    <script src="<?=site_url('home/user_avatar_markup')?>"></script>
 </body>
 
 </html>

@@ -10,12 +10,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
-    a:hover{
-        text-decoration: none;
-    }
-    .grow { transition: all .2s ease-in-out; }
-    .grow:hover { transform: scale(1.1); }
+        a:hover {
+            text-decoration: none;
+        }
+
+        .grow {
+            transition: all .2s ease-in-out;
+        }
+
+        .grow:hover {
+            transform: scale(1.1);
+        }
     </style>
+    <script>
+    function setUserAvatar(markup = {}) {
+        $('#user-avatar').html(markup.markup);
+    }
+    </script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -44,9 +55,7 @@
                         <a class="nav-link" href="<?= site_url('home/category/movies') ?>">Movies</a>
                     </li>
                 </ul>
-                <div class="mt-2 mt-md-0 ml-2 ml-md-0">
-                    <img src="https://www.gravatar.com/avatar/werddfees?d=mp&s=40" class="rounded">
-                </div>
+                <div class="mt-2 mt-md-0 ml-2 ml-md-0" id="user-avatar"></div>
             </div>
         </nav>
     </header>
