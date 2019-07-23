@@ -2,6 +2,9 @@
 .center-title{
     text-align: center;
 }
+.thumbnail-holder{
+    overflow: hidden;
+}
 .thumbnail-holder .show-on-hover{
     opacity: 0;
     transition: opacity 0.2s linear;
@@ -11,16 +14,20 @@
 }
 .object-type, .object-title{
     position: absolute;
+    z-index: 6;
 }
 .object-type{
     width: auto;
-    font-size: 12px;
+    font-size: 10px;
     border-bottom-right-radius: 5px;
 }
 .object-title{
-    bottom: 2px;
+    bottom: 0px;
     width: 100%;
+    font-size: 14px;
 }
+.thumbgrow { transition: all .3s ease-in-out; z-index: 5; }
+.thumbgrow:hover { transform: scale(1.1); }
 </style>
 <div class="container-fluid py-3">
     <?php // Breadcrumb ?>
@@ -43,11 +50,11 @@
 
         <?php foreach ($objects as $object) : ?>
         <a href="<?= site_url('home/goto/' . $object->id . '?ref=' . urlencode($next_ref)) ?>">
-            <div class="p-2 grow center-title" style="max-width: 190px;">
+            <div class="mr-3 grow center-title" style="max-width: 190px;">
                 <div class="thumbnail-holder position-relative">
-                    <div class="object-type bg-light text-dark border px-2 show-on-hover"><?=strtolower($object->type)?></div>
-                    <div class="object-title bg-light text-dark border px-3 show-on-hover"><?= $object->title ?></div>
-                    <img src="<?= $object->thumbnail ?>" style="max-height:200px;" class="img-thumbnail">
+                    <div class="object-type bg-dark text-light px-2 show-on-hover"><?=strtolower($object->type)?></div>
+                    <div class="object-title bg-dark text-light px-3 show-on-hover"><?= $object->title ?></div>
+                    <img class="thumbgrow" src="<?= $object->thumbnail ?>" style="height:200px;">
                 </div>
             </div>
         </a>
