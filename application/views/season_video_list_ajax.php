@@ -3,7 +3,7 @@
 <a href="<?=site_url('home/watch/'.$video->slug)?>">
 <div class="row mt-2 grow">
     <div class="col-3">
-        <img src="<?=htmlentities($video->thumbnail)?>" alt="<?=htmlentities($video->title)?>" class="img-thumbnail" style="max-height:200px;">
+        <img src="<?=htmlentities($video->thumbnail)?>" alt="<?=htmlentities($video->title)?>" class="img-thumbnail" style="width: 300px;">
     </div>
     <div class="col-9">
         <h2>
