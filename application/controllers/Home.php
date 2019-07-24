@@ -130,7 +130,7 @@ class Home extends CI_Controller {
 
 	public function user_avatar_markup() {
 		header('Content-Type: application/javascript');
-		$user = eflx_current_user();
+		$user = eflx_current_user(true);
 		if (!$user) {
 			// Not logged in, show login button
 			$markup = $this->load->view('login_btn', array(), true);

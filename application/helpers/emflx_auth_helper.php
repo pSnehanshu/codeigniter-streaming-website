@@ -3,10 +3,19 @@
 if ( ! function_exists('eflx_current_user'))
 {   
     // Returns current logged in user or false
-    function eflx_current_user()
+    function eflx_current_user($get_user = false)
     {
         if (isset($_SESSION['emflx_login']) && $_SESSION['emflx_login'] != null) {
-            return $_SESSION['emflx_login'];
+            if ($get_user) {
+                // Fetch current user details
+                $CI = &get_instance();
+                $CI->load->model('User_model');
+                $user = $CI->User_model->get_by_phone($_SESSION['emflx_login']['phone']);
+                if ($user) {
+                    return $user;
+                } else return false;
+            }
+            else return $_SESSION['emflx_login'];
         }
         else {
             return false;
