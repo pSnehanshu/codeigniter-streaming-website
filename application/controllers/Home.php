@@ -41,7 +41,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->load->view('layouts/header');
-		$this->load->view('video_watch', array('video' => $video));
+		$this->load->view('video_watch', array('video' => $video, 'should_play' => false));
 		$this->load->view('layouts/footer');
 	}
 
