@@ -76,11 +76,11 @@
 </div>
 
 <script>
-    const joinPremiumHash = 'joinpremium';
+    const joinPremiumHash = 'premium';
     $(function() {
         var hash = location.hash.substring(1);
         if (joinPremiumHash == hash) {
-            pay();
+            joinPremium();
         }
     });
 
