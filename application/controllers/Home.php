@@ -94,6 +94,13 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
+	// Membership plans page
+	public function plans() {
+		$this->load->view('layouts/header');
+		$this->load->view('plans');
+		$this->load->view('layouts/footer');
+	}
+
 	// Redirects to correct view page for any object based on id
 	public function goto($id = 1) {
 		$ref = $this->input->get('ref');
