@@ -1,22 +1,30 @@
 <style>
-html {
-    font-size: 14px;
-}
-@media (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 14px;
     }
-}
-.container {
-    max-width: 960px;
-}
-.pricing-header {
-    max-width: 700px;
-}
-.card-deck .card {
-    min-width: 220px;
-}
+
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    .container {
+        max-width: 960px;
+    }
+
+    .pricing-header {
+        max-width: 700px;
+    }
+
+    .card-deck .card {
+        min-width: 220px;
+    }
 </style>
+<script>
+    var is_premium_user = <?= $is_premium_user ? 'true' : 'false' ?>;
+    var is_free_user = <?= $is_free_user ? 'true' : 'false' ?>;
+</script>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Memberships</h1>
@@ -37,7 +45,12 @@ html {
                     <li>Comedy videos</li>
                     <li>And all free stuff</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Join for free</button>
+                <?php if (!$is_free_user) : ?>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="smsLogin()">Join for free</button>
+                <?php else : ?>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Already joined</button>
+                <?php endif; ?>
+
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -52,8 +65,37 @@ html {
                     <li>Premium movies</li>
                     <li>New shows added every week</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                <?php if (!$is_premium_user) : ?>
+                    <button type="button" class="btn btn-lg btn-block btn-primary" onclick="joinPremium()">Join Premium</button>
+                <?php else : ?>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Already joined</button>
+                <?php endif; ?>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    const joinPremiumHash = 'joinpremium';
+    $(function() {
+        var hash = location.hash.substring(1);
+        if (joinPremiumHash == hash) {
+            pay();
+        }
+    });
+
+    function joinPremium() {
+        location.hash = joinPremiumHash;
+        if (!is_free_user) {
+            smsLogin();
+        } else {
+            pay();
+        }
+    }
+
+    function pay() {
+        if (!is_premium_user) {
+            alert('Pay now');
+        }
+    }
+</script>
