@@ -9,10 +9,14 @@ class Home extends CI_Controller {
 	}
 	
 	// Main page
-	public function index()
-	{
-		$this->load->view('layouts/header');
+	public function index() {
+		$this->load->model('Banner_model');
+		$banners = $this->Banner_model->get_active();
 		
+		$this->load->view('layouts/header');
+		$this->load->view('home', array(
+			'banners' => $banners
+		));
 		$this->load->view('layouts/footer');
 	}
 
