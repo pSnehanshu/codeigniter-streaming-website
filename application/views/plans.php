@@ -46,9 +46,9 @@
                     <li>And all free stuff</li>
                 </ul>
                 <?php if (!$is_free_user) : ?>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="smsLogin()">Join for free</button>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="smsLogin()">Subscribe for free</button>
                 <?php else : ?>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Already joined</button>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Subscribed</button>
                 <?php endif; ?>
 
             </div>
@@ -66,9 +66,9 @@
                     <li>New shows added every week</li>
                 </ul>
                 <?php if (!$is_premium_user) : ?>
-                    <button type="button" class="btn btn-lg btn-block btn-primary" onclick="joinPremium()">Join Premium</button>
+                    <button type="button" class="btn btn-lg btn-block btn-primary" onclick="joinPremium()">Subscribe to Premium</button>
                 <?php else : ?>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Already joined</button>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" disabled>Subscribed</button>
                 <?php endif; ?>
             </div>
         </div>

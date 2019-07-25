@@ -7,7 +7,7 @@
                 <p class="lead">Subscribe to Eimiflix Premium to enjoy this content and more.</p>
                 <hr class="my-4">
                 <p>Subscribe now and you can cancel whenever you wish.</p>
-                <a class="btn btn-primary btn-lg" href="<?=site_url('home/plans#premium')?>" role="button">Subscripe to Eimiflix Premium</a>
+                <a class="btn btn-primary btn-lg" href="<?=site_url('home/plans#premium')?>" role="button">Subscribe to Eimiflix Premium</a>
             </div>
         <?php elseif (!$video->is_premium && !$current_user) : ?>
             <div class="jumbotron">
