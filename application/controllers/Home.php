@@ -48,8 +48,23 @@ class Home extends CI_Controller
 			show_404();
 		}
 
+		// Check if video is premium
+		$video_is_premium = $video->is_premium;
+		
+		// Check if user is premium member
+		$is_premium_user = false;
+		$current_user = eflx_current_user(true);
+		if ($current_user) {
+			$this->load->model('Plan_model');
+			$is_premium_user = $this->Plan_model->is_premium_user($current_user->id);
+		}
+
 		$this->load->view('layouts/header');
-		$this->load->view('video_watch', array('video' => $video, 'should_play' => false));
+		$this->load->view('video_watch', array(
+			'video' => $video,
+			'video_is_premium' => $video_is_premium,
+			'should_play' => $is_premium_user // Only valid for premium videos
+		));
 		$this->load->view('layouts/footer');
 	}
 
@@ -114,7 +129,7 @@ class Home extends CI_Controller
 			$is_premium = false;
 			$is_free = false;
 		}
-		
+
 		$this->load->view('layouts/header');
 		$this->load->view('plans', array(
 			'is_premium_user' => $is_premium,
