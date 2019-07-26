@@ -17,6 +17,12 @@ class Auth extends CI_Controller
         ));
     }
 
+    public function logout()
+    {
+        emflx_logout();
+        redirect('/');
+    }
+
     public function accountkit_cb()
     {
         // Initialize variables
