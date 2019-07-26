@@ -15,7 +15,7 @@ class Home extends CI_Controller
 		$this->load->model('Banner_model');
 		$banners = $this->Banner_model->get_active();
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => 'Enjoy free and premium shows, videos and movies'));
 		$this->load->view('home', array(
 			'banners' => $banners
 		));
@@ -28,7 +28,7 @@ class Home extends CI_Controller
 		$ref = $this->input->get('ref');
 		$objects = $this->Object_model->get_children($slug);
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => 'Enjoy '.$slug .', free and premium content available'));
 		$this->load->view('category', array(
 			'objects' => $objects,
 			'slug' => $slug,
@@ -59,7 +59,7 @@ class Home extends CI_Controller
 			$is_premium_user = $this->Plan_model->is_premium_user($current_user->id);
 		}
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => 'Watch online '.$video->title.' now'));
 		$this->load->view('video_watch', array(
 			'video' => $video,
 			'video_is_premium' => $video_is_premium,
@@ -91,7 +91,7 @@ class Home extends CI_Controller
 			}
 		}
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => $object->title));
 		$this->load->view('show', array('show' => $object, 'seasons' => $seasons, 'selected_season' => $selected_season));
 		$this->load->view('layouts/footer');
 	}
@@ -111,7 +111,7 @@ class Home extends CI_Controller
 			show_404();
 		}
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => $page->title));
 		$this->load->view('page', array('page' => $page));
 		$this->load->view('layouts/footer');
 	}
@@ -130,7 +130,7 @@ class Home extends CI_Controller
 			$is_free = false;
 		}
 
-		$this->load->view('layouts/header');
+		$this->load->view('layouts/header', array('title' => 'Pricing'));
 		$this->load->view('plans', array(
 			'is_premium_user' => $is_premium,
 			'is_free_user' => $is_free,
