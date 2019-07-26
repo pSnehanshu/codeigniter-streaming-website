@@ -22,9 +22,9 @@
   AccountKit_OnInteractive = function(){
     AccountKit.init(
       {
-        appId:"343289586591707", 
+        appId:"<?=$app_id?>", 
         state:"{{csrf}}", 
-        version:"v1.0",
+        version:"<?=$app_version?>",
         fbAppEventsEnabled:true,
         redirect:"http://eimiflix.localtest.me/eimiflix/auth/accountkit_cb",
         debug:true,

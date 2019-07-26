@@ -118,7 +118,8 @@ class Home extends CI_Controller
 		$this->load->view('layouts/header');
 		$this->load->view('plans', array(
 			'is_premium_user' => $is_premium,
-			'is_free_user' => $is_free
+			'is_free_user' => $is_free,
+			'rzp_api_code' => $this->config->item('rzp_api_code')
 		));
 		$this->load->view('layouts/footer');
 	}
@@ -187,7 +188,10 @@ class Home extends CI_Controller
 		$user = eflx_current_user(true);
 		if (!$user) {
 			// Not logged in, show login button
-			$markup = $this->load->view('login_btn', array(), true);
+			$markup = $this->load->view('login_btn', array(
+				'app_id' => $this->config->item('fb_app_id'),
+				'app_version' => $this->config->item('fb_accountkit_version')
+			), true);
 		} else {
 			// User is logged in, show user avatar
 			$markup = $this->load->view('banner_avatar', array('user' => $user), true);

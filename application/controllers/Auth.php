@@ -1,33 +1,37 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
     public function __construct()
-    {   
+    {
         parent::__construct();
         //$this->load->database();
     }
 
     public function login()
     {
-        $this->load->view('auth/login');
+        $this->load->view('auth/login', array(
+            'app_id' => $this->config->item('fb_app_id'),
+            'app_version' => $this->config->item('fb_accountkit_version')
+        ));
     }
 
     public function accountkit_cb()
     {
         // Initialize variables
-        $app_id = '343289586591707';
-        $secret = 'b115e952f32110e6260034042fb1d9f6';
-        $version = 'v1.0'; // 'v1.1' for example
+        $app_id = $this->config->item('fb_app_id');
+        $secret = $this->config->item('fb_accountkit_secret');
+        $version = $this->config->item('fb_accountkit_version');
         $next = 'home';
-        if (isset($_POST['next'])){
+        if (isset($_POST['next'])) {
             $next = $_POST['next'];
         }
 
         // Exchange authorization code for access token
-        $token_exchange_url = 'https://graph.accountkit.com/' .$version .'/access_token?'.
-            'grant_type=authorization_code'.
-            '&code=' .$_POST['code' ].
+        $token_exchange_url = 'https://graph.accountkit.com/' . $version . '/access_token?' .
+            'grant_type=authorization_code' .
+            '&code=' . $_POST['code'] .
             "&access_token=AA|$app_id|$secret";
         //die($token_exchange_url);
         $data = doCurl($token_exchange_url);
@@ -37,10 +41,10 @@ class Auth extends CI_Controller {
         $refresh_interval = $data['token_refresh_interval_sec'];
 
         // Get Account Kit information
-        $me_endpoint_url = 'https://graph.accountkit.com/' .$version .'/me?'.
-            'access_token=' .$user_access_token;
+        $me_endpoint_url = 'https://graph.accountkit.com/' . $version . '/me?' .
+            'access_token=' . $user_access_token;
         $data = doCurl($me_endpoint_url);
-        
+
         $phone = isset($data['phone']) ? $data['phone']['number'] : '';
         $email = isset($data['email']) ? $data['email']['address'] : '';
 
@@ -50,12 +54,10 @@ class Auth extends CI_Controller {
         if ($num_rows == 1) { // user exists, Login 
             if (emflx_login(array('phone' => $phone))) {
                 redirect($next);
-            }
-            else {
+            } else {
                 die('Unable to login');
             }
-        }
-        else if ($num_rows < 1) { // New user, signup
+        } else if ($num_rows < 1) { // New user, signup
             $user_insert_data = array(
                 'email' => $email,
                 'phone' => $phone,
@@ -68,16 +70,13 @@ class Auth extends CI_Controller {
                 // Login it
                 if (emflx_login(array('uid' => $uid, 'phone' => $phone))) {
                     redirect($next);
-                }
-                else {
+                } else {
                     die('Unable to login new user');
                 }
-            }
-            else {
+            } else {
                 die('Oops! An internal error occured.');
             }
-        }
-        else { // There's an  issue in db. Two users with same phone number
+        } else { // There's an  issue in db. Two users with same phone number
             die('There are more than one users with the same phone number. This is an anamoly. Please inform the site admin.');
         }
     }

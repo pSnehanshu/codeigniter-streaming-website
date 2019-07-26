@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$config['rzp_api_code'] = 'rzp_test_fzZ7zRtySVTGkq';
+$config['rzp_api_secret'] = 'xVc8l1sWzQSDqfvNcUaCKoFQ';
+$config['fb_app_id'] = '343289586591707';
+$config['fb_accountkit_secret'] = 'b115e952f32110e6260034042fb1d9f6';
+$config['fb_accountkit_version'] = 'v1.0';
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

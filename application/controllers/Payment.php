@@ -21,7 +21,7 @@ class Payment extends CI_Controller
 
         try {
             // Initialize razorpay
-            $api = new Api('rzp_test_fzZ7zRtySVTGkq', 'xVc8l1sWzQSDqfvNcUaCKoFQ');
+            $api = new Api($this->config->item('rzp_api_code'), $this->config->item('rzp_api_secret'));
 
             // Capture!!
             $payment = $api->payment->fetch($this->input->post('payment_id'))->capture(array('amount' => '9900'));

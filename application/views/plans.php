@@ -101,7 +101,7 @@
 
     // Razorpay options
     var options = {
-        "key": "rzp_test_fzZ7zRtySVTGkq", // Enter the Key ID generated from the Dashboard
+        "key": "<?=$rzp_api_code?>", // Enter the Key ID generated from the Dashboard
         "amount": "9900", // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
         "currency": "INR",
         "name": "Eimiflix.com",
