@@ -75,6 +75,12 @@
     </div>
 </div>
 
+<!-- razorpay form -->
+<form action="<?=site_url('payment/rzpcb')?>" method="post" id="rzpform" style="display:none;">
+    <input type="hidden" name="payment_id">
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     const joinPremiumHash = 'premium';
     $(function() {
@@ -93,9 +99,31 @@
         }
     }
 
+    // Razorpay options
+    var options = {
+        "key": "rzp_test_fzZ7zRtySVTGkq", // Enter the Key ID generated from the Dashboard
+        "amount": "9900", // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
+        "currency": "INR",
+        "name": "Eimiflix.com",
+        "description": "Premium membership for one month",
+        "image": "<?= base_url('static/images/main-logo.png') ?>",
+        "handler": function(response) {
+            // Send `response.razorpay_payment_id` to server
+            $('#rzpform > input[type="hidden"]').val(response.razorpay_payment_id);
+            $('#rzpform').submit();
+        },
+        "prefill": {
+            "contact": "<?=eflx_current_user()['phone']?>",
+        },
+        "theme": {
+            "color": "#343a40",
+        },
+    };
+    var rzp1 = new Razorpay(options);
+
     function pay() {
         if (!is_premium_user) {
-            alert('Pay now');
+            rzp1.open();
         }
     }
 </script>
