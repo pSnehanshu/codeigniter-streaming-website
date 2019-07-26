@@ -30,7 +30,7 @@ $config['fb_accountkit_version'] = getenv('EMFLX_FB_AK_VERSION');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://eimiflix.localtest.me/eimiflix/';
+$config['base_url'] = getenv('EMFLX_BASE_URL');
 
 /*
 |--------------------------------------------------------------------------
