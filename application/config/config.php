@@ -1,11 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['rzp_api_code'] = 'rzp_test_fzZ7zRtySVTGkq';
-$config['rzp_api_secret'] = 'xVc8l1sWzQSDqfvNcUaCKoFQ';
-$config['fb_app_id'] = '343289586591707';
-$config['fb_accountkit_secret'] = 'b115e952f32110e6260034042fb1d9f6';
-$config['fb_accountkit_version'] = 'v1.0';
+// Custom config variables
+$config['rzp_api_code'] = getenv('EMFLX_RZP_API_CODE');
+$config['rzp_api_secret'] = getenv('EMFLX_RZP_API_SECRET');
+$config['fb_app_id'] = getenv('EMFLX_FB_APP_ID');
+$config['fb_accountkit_secret'] = getenv('EMFLX_FB_AK_SECRET');
+$config['fb_accountkit_version'] = getenv('EMFLX_FB_AK_VERSION');
 
 /*
 |--------------------------------------------------------------------------

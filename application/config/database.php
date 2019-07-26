@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'remotemysql.com',
-	'username' => '0FM55CEPT7',
-	'password' => 'hQ6D6egFR1',
-	'database' => '0FM55CEPT7',
+	'hostname' => getenv('EMFLX_DB_HOST'),
+	'username' => getenv('EMFLX_DB_USER'),
+	'password' => getenv('EMFLX_DB_PASSWORD'),
+	'database' => getenv('EMFLX_DB_NAME'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
