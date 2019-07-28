@@ -8,7 +8,7 @@
         </div>
         <div class="col-9">
             <h2>
-                <?=htmlentities($video->title)?>
+                Episode <?=$video->object_order?> - <?=htmlentities($video->title)?>
             </h2>
             <p class="text-dark"><?=htmlentities($video->description)?></p>
         </div>
