@@ -35,7 +35,7 @@ class Object_model extends CI_Model {
 
 
 	public function get_children($slug, $expected_type = false, $start = 0, $num = 10) {
-        $this->db->select('objects.*');
+        $this->db->select('objects.*, object_heirarchy.child_order as object_order');
         $this->db->from('objects, object_heirarchy');
         $this->db->where('object_heirarchy.parent = (SELECT id FROM objects WHERE slug = '.$this->db->escape($slug).')');
         $this->db->where('object_heirarchy.child = objects.id');
@@ -48,7 +48,7 @@ class Object_model extends CI_Model {
     }
 
     public function get_children_by_id($id, $expected_type = false, $start = 0, $num = 10) {
-        $this->db->select('objects.*');
+        $this->db->select('objects.*, object_heirarchy.child_order as object_order');
         $this->db->from('objects, object_heirarchy');
         $this->db->where('object_heirarchy.parent', $id);
         $this->db->where('object_heirarchy.child = objects.id');
