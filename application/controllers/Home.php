@@ -59,11 +59,20 @@ class Home extends CI_Controller
 			$is_premium_user = $this->Plan_model->is_premium_user($current_user->id);
 		}
 
+		// Load video info
+		$video_info = null;
+		if ($is_premium_user && $current_user) {
+			$this->load->model('Video_model');
+			$video_info = $this->Video_model->get_info($video->id);
+		}
+
 		$this->load->view('layouts/header', array('title' => 'Watch online '.$video->title.' now'));
 		$this->load->view('video_watch', array(
 			'video' => $video,
 			'video_is_premium' => $video_is_premium,
-			'should_play' => $is_premium_user // Only valid for premium videos
+			'should_play' => $is_premium_user, // Only valid for premium videos
+			'user_logged_in' => !!$current_user,
+			'video_info' => $video_info
 		));
 		$this->load->view('layouts/footer');
 	}

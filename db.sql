@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 26, 2019 at 05:36 PM
+-- Generation Time: Jul 29, 2019 at 08:01 AM
 -- Server version: 8.0.13-4
 -- PHP Version: 7.2.19-0ubuntu0.18.04.1
 
@@ -123,6 +123,18 @@ CREATE TABLE `users` (
   `joined_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_info`
+--
+
+CREATE TABLE `video_info` (
+  `object_id` int(11) NOT NULL,
+  `link` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'video/mp4'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -165,6 +177,12 @@ ALTER TABLE `payment_history`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `video_info`
+--
+ALTER TABLE `video_info`
+  ADD PRIMARY KEY (`object_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

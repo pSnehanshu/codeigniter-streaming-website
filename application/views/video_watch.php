@@ -1,10 +1,9 @@
-
+<?php $is_playing = false; ?>
 <link href="https://vjs.zencdn.net/7.6.0/video-js.min.css" rel="stylesheet">
 
-<?php $current_user = eflx_current_user(); ?>
 <div class="container-fluid p-3 bg-dark">
     <div>
-        <?php if ($video_is_premium && !$should_play) : $is_playing = false; ?>
+        <?php if ($video_is_premium && !$should_play) : ?>
             <div class="jumbotron">
                 <h2 class="display-5">This is a premium content</h2>
                 <p class="lead">Subscribe to Eimiflix Premium to enjoy this content and more.</p>
@@ -12,7 +11,7 @@
                 <p>Subscribe now and you can cancel whenever you wish.</p>
                 <a class="btn btn-primary btn-lg" href="<?= site_url('home/plans#premium') ?>" role="button">Subscribe to Eimiflix Premium</a>
             </div>
-        <?php elseif (!$video_is_premium && !$current_user) : $is_playing = false; ?>
+        <?php elseif (!$video_is_premium && !$user_logged_in) : ?>
             <div class="jumbotron">
                 <h2 class="display-5">Watch this video for free</h2>
                 <p class="lead">Join Eimiflix today to enjoy this content and more for free.</p>
@@ -20,11 +19,11 @@
                 <p>You may subscribe to Eimiflix Premium to enjoy premium shows and movies.</p>
                 <button type="button" class="btn btn-primary btn-lg" onclick="smsLogin()" role="button">Join Eimiflix now</a>
             </div>
-        <?php else : $is_playing = true; ?>
+        <?php elseif ($video_info) : $is_playing = true; ?>
             <!-- Video.js player -->
             <div class="d-block mx-auto" style="max-width: 70%;">
                 <video id='the-video' class='video-js vjs-big-play-centered'>
-                    <source src='https://eimiflix-videos-sp-741100443704-ap-south-1.s3.ap-south-1.amazonaws.com/free/Music+Video/GOL+NANG+NGAI+IN+BAD+JEEZ.mp4' type='video/mp4'>
+                    <source src='<?=htmlentities($video_info->link)?>' type='<?=htmlentities($video_info->type)?>'>
                     <p class='vjs-no-js'>
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
