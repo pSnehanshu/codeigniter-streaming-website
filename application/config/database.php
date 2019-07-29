@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('EMFLX_DB_HOST'),
-	'username' => getenv('EMFLX_DB_USER'),
-	'password' => getenv('EMFLX_DB_PASSWORD'),
-	'database' => getenv('EMFLX_DB_NAME'),
+	'hostname' => $_SERVER['EMFLX_DB_HOST'],
+	'username' => $_SERVER['EMFLX_DB_USER'],
+	'password' => $_SERVER['EMFLX_DB_PASSWORD'],
+	'database' => $_SERVER['EMFLX_DB_NAME'],
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

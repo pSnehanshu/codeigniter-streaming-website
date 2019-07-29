@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Custom config variables
-$config['rzp_api_code'] = getenv('EMFLX_RZP_API_CODE');
-$config['rzp_api_secret'] = getenv('EMFLX_RZP_API_SECRET');
-$config['fb_app_id'] = getenv('EMFLX_FB_APP_ID');
-$config['fb_accountkit_secret'] = getenv('EMFLX_FB_AK_SECRET');
-$config['fb_accountkit_version'] = getenv('EMFLX_FB_AK_VERSION');
+$config['rzp_api_code'] = $_SERVER['EMFLX_RZP_API_CODE'];
+$config['rzp_api_secret'] = $_SERVER['EMFLX_RZP_API_SECRET'];
+$config['fb_app_id'] = $_SERVER['EMFLX_FB_APP_ID'];
+$config['fb_accountkit_secret'] = $_SERVER['EMFLX_FB_AK_SECRET'];
+$config['fb_accountkit_version'] = $_SERVER['EMFLX_FB_AK_VERSION'];
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ $config['fb_accountkit_version'] = getenv('EMFLX_FB_AK_VERSION');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = getenv('EMFLX_BASE_URL');
+$config['base_url'] = $_SERVER['EMFLX_BASE_URL'];
 
 /*
 |--------------------------------------------------------------------------
