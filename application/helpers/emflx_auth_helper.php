@@ -27,14 +27,13 @@ if ( ! function_exists('emflx_login'))
 {   
     // Tries to login a user
     function emflx_login($user = array())
-    {
-        if (emflx_current_user()) { // An user is already logged in, can't login again
-            return false;
+    {    // An user is already logged in, log out
+        if (emflx_current_user()) {
+            emflx_logout();
         }
-        else {
-            $_SESSION['emflx_login'] = $user;
-            return true;
-        }
+        
+        $_SESSION['emflx_login'] = $user;
+        return true;
     }   
 }
 
