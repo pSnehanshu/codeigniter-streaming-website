@@ -27,7 +27,7 @@ class Payment extends CI_Controller
             $payment = $api->payment->fetch($this->input->post('payment_id'))->capture(array('amount' => '9900'));
 
             if ($payment->status == 'captured') {
-                $uid = eflx_current_user(true)->id;
+                $uid = emflx_current_user(true)->id;
                 $amount = $payment->amount / 100; // Converting to rupee from paisa
                 $currency = $payment->currency;
 

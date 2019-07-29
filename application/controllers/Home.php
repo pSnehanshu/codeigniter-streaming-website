@@ -53,7 +53,7 @@ class Home extends CI_Controller
 		
 		// Check if user is premium member
 		$is_premium_user = false;
-		$current_user = eflx_current_user(true);
+		$current_user = emflx_current_user(true);
 		if ($current_user) {
 			$this->load->model('Plan_model');
 			$is_premium_user = $this->Plan_model->is_premium_user($current_user->id);
@@ -128,7 +128,7 @@ class Home extends CI_Controller
 	// Membership plans page
 	public function plans()
 	{
-		$current_user = eflx_current_user(true);
+		$current_user = emflx_current_user(true);
 
 		if ($current_user) {
 			$is_free = true;
@@ -209,7 +209,7 @@ class Home extends CI_Controller
 	public function user_avatar_markup()
 	{
 		header('Content-Type: application/javascript');
-		$user = eflx_current_user(true);
+		$user = emflx_current_user(true);
 		if (!$user) {
 			// Not logged in, show login button
 			$markup = $this->load->view('login_btn', array(

@@ -6,7 +6,7 @@ class Plan_model extends CI_Model{
         // Fetch all transactions within the last 30 days.
         // If there are any, it is a premium user
         if ($uid == null) {
-            $user = eflx_current_user(true);
+            $user = emflx_current_user(true);
             if (!$user) return false;
             else $uid = $user->id;
         }

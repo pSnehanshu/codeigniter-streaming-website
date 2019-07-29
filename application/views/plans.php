@@ -113,7 +113,7 @@
             $('#rzpform').submit();
         },
         "prefill": {
-            "contact": "<?=eflx_current_user()['phone']?>",
+            "contact": "<?=emflx_current_user()['phone']?>",
         },
         "theme": {
             "color": "#343a40",
