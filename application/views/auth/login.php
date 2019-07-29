@@ -27,7 +27,7 @@
         version:"<?=$app_version?>",
         fbAppEventsEnabled:true,
         redirect:"http://eimiflix.localtest.me/eimiflix/auth/accountkit_cb",
-        debug:true,
+        debug: <?= ENVIRONMENT == 'production' ? 'false': 'true' ?>,
       }
     );
   };

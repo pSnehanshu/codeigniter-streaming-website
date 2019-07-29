@@ -17,7 +17,7 @@
         version: "<?=$app_version?>",
         fbAppEventsEnabled: true,
         redirect: '<?=site_url('auth/accountkit_cb')?>',
-        debug:true,
+        debug: <?= ENVIRONMENT == 'production' ? 'false': 'true' ?>,
       }
     );
   };
