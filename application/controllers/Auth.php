@@ -70,7 +70,6 @@ class Auth extends CI_Controller
             );
             if ($this->db->insert('users', $user_insert_data)) {
                 $uid = $this->db->insert_id();
-                die('Registered with id ' . $uid);
                 // Send verification email as well
 
                 // Login it
