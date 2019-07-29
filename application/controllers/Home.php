@@ -61,7 +61,7 @@ class Home extends CI_Controller
 
 		// Load video info
 		$video_info = null;
-		if ($is_premium_user && $current_user) {
+		if ($is_premium_user || $current_user) {
 			$this->load->model('Video_model');
 			$video_info = $this->Video_model->get_info($video->id);
 		}
