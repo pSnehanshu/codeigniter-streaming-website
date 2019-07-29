@@ -66,7 +66,7 @@ class Home extends CI_Controller
 			$video_info = $this->Video_model->get_info($video->id);
 		}
 
-		$this->load->view('layouts/header', array('title' => 'Watch online '.$video->title.' now'));
+		$this->load->view('layouts/header', array('title' => 'Watch online "'.$video->title.'"'));
 		$this->load->view('video_watch', array(
 			'video' => $video,
 			'video_is_premium' => $video_is_premium,
