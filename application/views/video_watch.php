@@ -22,7 +22,7 @@
         <?php elseif ($video_info) : $is_playing = true; ?>
             <!-- Video.js player -->
             <div class="d-block mx-auto" style="max-width: 70%;">
-                <video id='the-video' class='video-js vjs-big-play-centered'>
+                <video id='the-video' class='video-js vjs-big-play-centered' style="width: 100%; max-width: 1000px;" >
                     <source src='<?=htmlentities($video_info->link)?>' type='<?=htmlentities($video_info->type)?>'>
                     <p class='vjs-no-js'>
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -34,7 +34,7 @@
         <?php endif; ?>
 
         <?php if (!$is_playing): ?>
-            <img id="plain-thumb" src="<?= htmlentities($video->thumbnail) ?>" style="max-width: 70%;" class="d-block mx-auto">
+            <img id="plain-thumb" src="<?= htmlentities($video->thumbnail) ?>" style="width: 100%; max-width: 1000px;" class="d-block mx-auto">
         <?php endif;?>
     </div>
 </div>
@@ -52,6 +52,5 @@ const player = videojs('the-video', {
   preload: 'auto',
   poster: '<?= htmlentities($video->thumbnail) ?>',
   fluid: true,
-  aspectRatio: '16:9',
 });
 </script>
