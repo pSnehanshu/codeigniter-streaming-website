@@ -9,14 +9,6 @@ class Auth extends CI_Controller
         //$this->load->database();
     }
 
-    public function login()
-    {
-        $this->load->view('auth/login', array(
-            'app_id' => $this->config->item('fb_app_id'),
-            'app_version' => $this->config->item('fb_accountkit_version')
-        ));
-    }
-
     public function logout()
     {
         emflx_logout();
