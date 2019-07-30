@@ -386,7 +386,7 @@ $config['encryption_key'] = 'hgt6yrtgfhjmu7t6rytfg456ytdfgsdfght456yhgfdser443';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'session_for_eimiflix';
-$config['sess_expiration'] = 7200;
+$config['sess_expiration'] = 2592000; // 30 days
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
