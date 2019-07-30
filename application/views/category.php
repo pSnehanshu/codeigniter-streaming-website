@@ -46,11 +46,10 @@
     </nav>
 
     <?php // Children ?>
-    <div class="d-flex">
-
+    <div class="container-fluid">
         <?php foreach ($objects as $object) : ?>
         <a href="<?= site_url('home/goto/' . $object->id . '?ref=' . urlencode($next_ref)) ?>">
-            <div class="mr-3 grow center-title" style="max-width: 190px;">
+            <div class="d-inline-block center-title" >
                 <div class="thumbnail-holder position-relative">
                     <div class="object-type bg-dark text-light px-2 show-on-hover"><?=strtolower($object->type)?></div>
                     <div class="object-title bg-dark text-light px-3 show-on-hover"><?= $object->title ?></div>
