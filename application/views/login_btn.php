@@ -1,52 +1,18 @@
-<button onclick="smsLogin()" class="btn btn-outline-light">Login</button>
-
-<form action="<?=site_url('auth/accountkit_cb')?>" method="post" id="otpcbform" style="display:none;">
-    <input type="hidden" name="code">
-    <input type="hidden" name="csrf">
-    <input type="hidden" name="next">
+<form id="accountkit-login-form" method="get" action="https://www.accountkit.com/<?= $app_version ?>/basic/dialog/sms_login/" style="padding:0px; margin: 0px;">
+  <input type="hidden" name="app_id" value="<?= $app_id ?>">
+  <input type="hidden" name="redirect" value="<?= site_url('auth/accountkit_cb') ?>">
+  <input type="hidden" name="state" value="YOUR_CSRF_TOKEN">
+  <input type="hidden" name="fbAppEventsEnabled" value=true>
+  <input type="hidden" name="debug" value="<?= ENVIRONMENT == 'production' ? 'false' : 'true' ?>">
+  <input type="hidden" name="country_code" value="+91">
 </form>
 
-<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<button onclick="smsLogin()" class="btn btn-outline-light">Login</button>
+
 <script>
-  // initialize Account Kit with CSRF protection
-  AccountKit_OnInteractive = function(){
-    AccountKit.init(
-      {
-        appId: "<?=$app_id?>", 
-        state: "{{csrf}}", 
-        version: "<?=$app_version?>",
-        fbAppEventsEnabled: true,
-        redirect: '<?=site_url('auth/accountkit_cb')?>',
-        debug: <?= ENVIRONMENT == 'production' ? 'false': 'true' ?>,
-      }
-    );
-  };
-
-  // login callback
-  function loginCallback(response) {
-    if (response.status === "PARTIALLY_AUTHENTICATED") {
-      // Send code to server to exchange for access token
-      document.querySelector('#otpcbform>input[name="code"]').value = response.code;
-      document.querySelector('#otpcbform>input[name="csrf"]').value = response.state;
-      document.querySelector('#otpcbform>input[name="next"]').value = location.href;
-      document.getElementById('otpcbform').submit();
-    }
-    else if (response.status === "NOT_AUTHENTICATED") {
-      // handle authentication failure
-    }
-    else if (response.status === "BAD_PARAMS") {
-      // handle bad parameters
-    }
-  }
-
-  // phone form submission handler
   function smsLogin() {
-    var countryCode = '+91';
-    AccountKit.login(
-      'PHONE', 
-      {countryCode: countryCode}, // will use default values if not specified
-      loginCallback
-    );
+    let csrf = $('#accountkit-login-form > input[name=state]').val();
+    $('#accountkit-login-form > input[name=state]').val(`${csrf}@${location.href}`);
+    $('#accountkit-login-form').submit();
   }
 </script>
-

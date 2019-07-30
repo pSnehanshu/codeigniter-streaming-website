@@ -22,18 +22,29 @@ class Auth extends CI_Controller
         $secret = $this->config->item('fb_accountkit_secret');
         $version = $this->config->item('fb_accountkit_version');
         $next = 'home';
-        if (isset($_POST['next'])) {
-            $next = $_POST['next'];
+
+        // Extract csrf and redirect url
+        $state = explode('@', $this->input->get('state'));
+        if (isset($state[0])) $csrf = $state[0];
+        if (isset($state[1])) $next = $state[1];
+
+        // Verify $csrf
+        
+        // Status
+        if ($this->input->get('status') != 'PARTIALLY_AUTHENTICATED') {
+            redirect($next);
         }
 
         // Exchange authorization code for access token
         $token_exchange_url = 'https://graph.accountkit.com/' . $version . '/access_token?' .
             'grant_type=authorization_code' .
-            '&code=' . $_POST['code'] .
+            '&code=' . $this->input->get('code') .
             "&access_token=AA|$app_id|$secret";
-        //die($token_exchange_url);
+
         $data = doCurl($token_exchange_url);
-        //echo '<pre>';print_r($data);exit;
+
+        // Please check if the data is received
+
         $user_id = $data['id'];
         $user_access_token = $data['access_token'];
         $refresh_interval = $data['token_refresh_interval_sec'];
@@ -43,8 +54,14 @@ class Auth extends CI_Controller
             'access_token=' . $user_access_token;
         $data = doCurl($me_endpoint_url);
 
+        // Please check if the data is received
+
         $phone = isset($data['phone']) ? $data['phone']['number'] : '';
         $email = isset($data['email']) ? $data['email']['address'] : '';
+
+        if (strlen($phone) < 1) {
+            redirect($next);
+        }
 
         // Sign up or login
         $query = $this->db->get_where('users', array('phone' => $phone));
