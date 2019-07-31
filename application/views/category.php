@@ -60,7 +60,7 @@
             </a>
             <?php endforeach; ?>
         <?php else:?>
-            <div class="justify-content-center">
+            <div class="text-center">
                 Nothing found here. Keep looking back.
             </div>
         <?php endif;?>
