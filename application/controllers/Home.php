@@ -12,12 +12,17 @@ class Home extends CI_Controller
 	// Main page
 	public function index()
 	{
+		// Load banners
 		$this->load->model('Banner_model');
 		$banners = $this->Banner_model->get_active();
 
+		// Load categories
+		$categories = $this->Object_model->get_all('category');
+		
 		$this->load->view('layouts/header', array('title' => 'Enjoy free and premium shows, videos and movies'));
 		$this->load->view('home', array(
-			'banners' => $banners
+			'banners' => $banners,
+			'categories' => $categories,
 		));
 		$this->load->view('layouts/footer');
 	}
@@ -36,6 +41,11 @@ class Home extends CI_Controller
 			'next_ref' => $ref . '/' . $slug
 		));
 		$this->load->view('layouts/footer');
+	}
+
+	public function ajax_category($id) {
+		$children = $this->Object_model->get_children_by_id($id);
+		$this->load->view('ajax_category', array('children' => $children));
 	}
 
 	// Video player page

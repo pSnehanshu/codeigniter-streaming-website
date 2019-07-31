@@ -75,4 +75,16 @@ class Object_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_all($type = null, $start = 0, $num = 10, $get_unpublished = false) {
+        if (!$get_unpublished) {
+            $this->db->where('is_published', 1);
+        }
+        if ($type) {
+            $this->db->where('type', $type);
+        }
+        $this->db->limit($num, $start);
+        $query = $this->db->get('objects');
+        return $query->result();
+    }
 }
