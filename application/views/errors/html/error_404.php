@@ -27,7 +27,7 @@ $CI->load->helper('url');
 		<h1 class="mr-3 px-3 align-top border-right inline-block align-content-center">404 page not found</h1>
 		<div class="inline-block align-middle px-2">
 			<a href="<?=site_url()?>">
-				<img style="max-width: 80%;" src="https://dglyi7b99dtt4.cloudfront.net/free/favicon.ico" alt="Eimiflix">
+				<img style="max-width: 80%;" src="https://dglyi7b99dtt4.cloudfront.net/free/main-logo.png" alt="Eimiflix">
 			</a>
 		</div>
 	</div>

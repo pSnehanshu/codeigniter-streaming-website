@@ -101,14 +101,13 @@
 
     // Razorpay options
     var options = {
-        "key": "<?=$rzp_api_code?>", // Enter the Key ID generated from the Dashboard
-        "amount": "9900", // Amount is in currency subunits. Default currency is INR. Hence, 29935 refers to 29935 paise or INR 299.35.
+        "key": "<?=$rzp_api_code?>",
+        "amount": "9900", 
         "currency": "INR",
         "name": "Eimiflix.com",
         "description": "Premium membership for one month",
-        "image": "<?= base_url('static/images/main-logo.png') ?>",
+        "image": "https://dglyi7b99dtt4.cloudfront.net/free/main-logo.png",
         "handler": function(response) {
-            // Send `response.razorpay_payment_id` to server
             $('#rzpform > input[type="hidden"]').val(response.razorpay_payment_id);
             $('#rzpform').submit();
         },
