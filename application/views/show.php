@@ -4,7 +4,7 @@
             <div class="mb-3">
                 <h1><?= htmlentities($show->title) ?></h1>
                 <p><?= htmlentities($show->description) ?></p>
-                <a href="#" class="btn btn-outline-light">Play S1E1</a>
+                <!--<a href="#" class="btn btn-outline-light">Play S1E1</a>-->
             </div>
         </div>
         <div class="col">
