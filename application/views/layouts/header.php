@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?=htmlentities(isset($title) ? $title.' | ' : '')?>Eimiflix.com</title>
+
+    <?php if (isset($description)) : ?>
+        <meta name="description" content="<?= htmlentities($description) ?>">
+        <meta property="og:description" content="<?= htmlentities($description) ?>">
+    <?php endif; ?>
+
+    <?php if (isset($thumb)) : ?>
+        <meta name="thumbnail" content="<?= htmlentities($thumb) ?>" />
+        <meta property="og:image" content="<?= htmlentities($thumb) ?>">
+    <?php endif; ?>
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Eimiflix.com">
+
+    <?php $the_title = htmlentities(isset($title) ? $title . ' | ' : '') . 'Eimiflix.com';?>
+    <meta name="twitter:image:alt" content="<?= $the_title ?>">
+    <meta property="og:title" content="<?= $the_title ?>">
+    <title><?= $the_title ?></title>
+    
     <link rel="shortcut icon" href="https://dglyi7b99dtt4.cloudfront.net/free/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://dglyi7b99dtt4.cloudfront.net/free/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,9 +43,9 @@
         }
     </style>
     <script>
-    function setUserAvatar(markup = {}) {
-        $('#user-avatar').html(markup.markup);
-    }
+        function setUserAvatar(markup = {}) {
+            $('#user-avatar').html(markup.markup);
+        }
     </script>
 </head>
 

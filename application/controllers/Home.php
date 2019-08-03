@@ -33,7 +33,9 @@ class Home extends CI_Controller
 		$ref = $this->input->get('ref');
 		$objects = $this->Object_model->get_children($slug);
 
-		$this->load->view('layouts/header', array('title' => 'Enjoy '.$slug .', free and premium content available'));
+		$this->load->view('layouts/header', array(
+			'title' => 'Enjoy '.$slug .', free and premium content available'
+		));
 		$this->load->view('category', array(
 			'objects' => $objects,
 			'slug' => $slug,
@@ -76,7 +78,11 @@ class Home extends CI_Controller
 			$video_info = $this->Video_model->get_info($video->id);
 		}
 
-		$this->load->view('layouts/header', array('title' => 'Watch online "'.$video->title.'"'));
+		$this->load->view('layouts/header', array(
+			'title' => 'Watch online "'.$video->title.'"',
+			'description' => $video->description,
+			'thumb' => $video->thumbnail
+		));
 		$this->load->view('video_watch', array(
 			'video' => $video,
 			'video_is_premium' => $video_is_premium,
@@ -110,8 +116,16 @@ class Home extends CI_Controller
 			}
 		}
 
-		$this->load->view('layouts/header', array('title' => $object->title));
-		$this->load->view('show', array('show' => $object, 'seasons' => $seasons, 'selected_season' => $selected_season));
+		$this->load->view('layouts/header', array(
+			'title' => $object->title,
+			'description' => $object->description,
+			'thumb' => $object->thumbnail
+		));
+		$this->load->view('show', array(
+			'show' => $object,
+			'seasons' => $seasons,
+			'selected_season' => $selected_season
+		));
 		$this->load->view('layouts/footer');
 	}
 
