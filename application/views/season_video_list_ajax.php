@@ -2,7 +2,7 @@
     <?php foreach ($videos as $video):?>
 
     <a href="<?=site_url('home/watch/'.$video->slug)?>">
-    <div class="row mt-2 grow">
+    <div class="row mt-2">
         <div class="col-lg-3">
             <img src="<?=htmlentities($video->thumbnail)?>" alt="<?=htmlentities($video->title)?>" class="img-thumbnail" style="width: 300px;">
         </div>
