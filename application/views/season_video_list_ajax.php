@@ -3,10 +3,10 @@
 
     <a href="<?=site_url('home/watch/'.$video->slug)?>">
     <div class="row mt-2 grow">
-        <div class="col-3">
+        <div class="col-lg-3">
             <img src="<?=htmlentities($video->thumbnail)?>" alt="<?=htmlentities($video->title)?>" class="img-thumbnail" style="width: 300px;">
         </div>
-        <div class="col-9">
+        <div class="col-lg-9">
             <h2>
                 Episode <?=$video->object_order?> - <?=htmlentities($video->title)?>
             </h2>
