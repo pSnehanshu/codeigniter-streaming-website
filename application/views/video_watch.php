@@ -50,7 +50,7 @@ const player = videojs('the-video', {
   autoplay: true,
   controls: true,
   preload: 'auto',
-  poster: '<?= htmlentities($video->thumbnail) ?>',
+  poster: `<?= htmlentities($video->thumbnail) ?>`,
   fluid: true,
 });
 </script>
