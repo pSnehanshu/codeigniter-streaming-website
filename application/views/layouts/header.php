@@ -14,7 +14,7 @@
         <meta name="thumbnail" content="<?= htmlentities($thumb) ?>" />
         <meta property="og:image" content="<?= htmlentities($thumb) ?>">
     <?php endif; ?>
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:site_name" content="Eimiflix.com">
 
@@ -22,7 +22,7 @@
     <meta name="twitter:image:alt" content="<?= $the_title ?>">
     <meta property="og:title" content="<?= $the_title ?>">
     <title><?= $the_title ?></title>
-    
+
     <link rel="shortcut icon" href="https://dglyi7b99dtt4.cloudfront.net/free/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://dglyi7b99dtt4.cloudfront.net/free/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -61,9 +61,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('home/category/special') ?>">Special</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
                     </li>
