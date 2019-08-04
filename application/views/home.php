@@ -96,7 +96,72 @@
     const categories = [];
 </script>
 <div class="container-fluid">
-    <?php foreach ($categories as $category) : $id = "category-vids-" . $category->slug; ?>
+    <div class="mb-5">
+        <h2>
+            <a class="text-dark" href="<?= site_url('home/category/movies') ?>">Movies</a>
+        </h2>
+        <div id="category-vids-movies" class="py-3">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <script>
+            categories.push({
+                id: 'category-vids-movies',
+                catid: '4'
+            })
+        </script>
+    </div>
+    <div class="mb-5">
+        <h2>
+            <a class="text-dark" href="<?= site_url('home/category/short-videos') ?>">Short videos</a>
+        </h2>
+        <div id="category-vids-short-videos" class="py-3">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <script>
+            categories.push({
+                id: 'category-vids-short-videos',
+                catid: '3'
+            })
+        </script>
+    </div>
+    <div class="mb-5">
+        <h2>
+            <a class="text-dark" href="<?= site_url('home/category/music-videos') ?>">Music videos</a>
+        </h2>
+        <div id="category-vids-music-videos" class="py-3">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <script>
+            categories.push({
+                id: 'category-vids-music-videos',
+                catid: '2'
+            })
+        </script>
+    </div>
+    <div class="mb-5">
+        <h2>
+            <a class="text-dark" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
+        </h2>
+        <div id="category-vids-comedy" class="py-3">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <script>
+            categories.push({
+                id: 'category-vids-comedy',
+                catid: '1'
+            })
+        </script>
+    </div>
+    
+    <?php /*foreach ($categories as $category) : $id = "category-vids-" . $category->slug; ?>
         <div class="mb-5">
             <h2>
                 <a class="text-dark" href="<?= site_url('home/category/' . $category->slug) ?>"><?= htmlentities($category->title) ?></a>
@@ -114,7 +179,8 @@
             </script>
         </div>
 
-    <?php endforeach; ?>
+    <?php endforeach;*/ ?>
+
 </div>
 
 <script>

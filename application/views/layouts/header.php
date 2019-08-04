@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:site_name" content="Eimiflix.com">
 
-    <?php $the_title = htmlentities(isset($title) ? $title . ' | ' : '') . 'Eimiflix.com';?>
+    <?php $the_title = htmlentities(isset($title) ? $title . ' | ' : '') . 'Eimiflix.com'; ?>
     <meta name="twitter:image:alt" content="<?= $the_title ?>">
     <meta property="og:title" content="<?= $the_title ?>">
     <title><?= $the_title ?></title>
@@ -62,16 +62,17 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
+                        <a class="nav-link" href="<?= site_url('home/category/movies') ?>">Movies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('home/category/short-videos') ?>">Short videos</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('home/category/music-videos') ?>">Music videos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('home/category/movies') ?>">Movies</a>
+                        <a class="nav-link" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
                     </li>
                 </ul>
                 <div class="mt-2 mt-md-0 ml-2 ml-md-0" id="user-avatar"></div>
