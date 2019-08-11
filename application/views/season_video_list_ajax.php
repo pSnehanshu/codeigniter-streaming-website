@@ -7,9 +7,10 @@
             <img src="<?=htmlentities($video->thumbnail)?>" alt="<?=htmlentities($video->title)?>" class="img-thumbnail" style="width: 300px;">
         </div>
         <div class="col-lg-9">
-            <h2>
-                Episode <?=$video->object_order?> - <?=htmlentities($video->title)?>
-            </h2>
+            <?php $title = 'Episode ' . $video->object_order . '-' . htmlentities($video->title); ?>
+            
+            <h2 class="d-none d-lg-block"><?=$title?></h2>
+            <h2 class="d-lg-none" style="font-size: 21px;"><?=$title?></h2>
             <p class="text-dark"><?=htmlentities($video->description)?></p>
         </div>
     </div>
