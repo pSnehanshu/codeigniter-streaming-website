@@ -54,7 +54,11 @@
                     <div class="thumbnail-holder position-relative">
                         <div class="object-type bg-dark text-light px-2 show-on-hover"><?=strtolower($object->type)?></div>
                         <div class="object-title bg-dark text-light px-3 show-on-hover"><?= $object->title ?></div>
-                        <img class="thumbgrow" src="<?= $object->thumbnail ?>" style="height:200px;">
+                        <img class="thumbgrow d-none d-lg-block" src="<?= $object->thumbnail ?>" style="height:200px;">
+                        <img class="d-lg-none" src="<?= $object->thumbnail ?>" style="height:200px;">
+                    </div>
+                    <div class="d-md-none p-2">
+                        <p><?= $object->title ?><p>
                     </div>
                 </div>
             </a>
