@@ -45,7 +45,6 @@
 </div>
 
 <script src='https://vjs.zencdn.net/7.6.0/video.min.js'></script>
-<script src="https://cdn.jsdelivr.net/gh/pSnehanshu/storage/videojs-landscape-fullscreen.min.js"></script>
 <script>
 const player = videojs('the-video', {
   autoplay: true,
@@ -54,5 +53,4 @@ const player = videojs('the-video', {
   poster: `<?= htmlentities($video->thumbnail) ?>`,
   fluid: true,
 });
-player.landscapeFullscreen();
 </script>
