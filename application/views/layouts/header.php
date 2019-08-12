@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <?php if (isset($description)) : ?>
-        <meta name="description" content="<?= htmlentities($description) ?>">
-        <meta property="og:description" content="<?= htmlentities($description) ?>">
+    <meta name="description" content="<?= htmlentities($description) ?>">
+    <meta property="og:description" content="<?= htmlentities($description) ?>">
     <?php endif; ?>
 
     <?php if (isset($thumb)) : ?>
-        <meta name="thumbnail" content="<?= htmlentities($thumb) ?>" />
-        <meta property="og:image" content="<?= htmlentities($thumb) ?>">
+    <meta name="thumbnail" content="<?= htmlentities($thumb) ?>" />
+    <meta property="og:image" content="<?= htmlentities($thumb) ?>">
     <?php endif; ?>
 
     <meta name="twitter:card" content="summary_large_image">
@@ -47,6 +47,18 @@
             $('#user-avatar').html(markup.markup);
         }
     </script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143659616-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-143659616-1');
+    </script>
+    
 </head>
 
 <body class="d-flex flex-column h-100">
