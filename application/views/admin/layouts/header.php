@@ -48,7 +48,11 @@
             <a style="text-decoration: none; color: #fff;" href="<?= site_url('admin') ?>">
                 <img src="https://dglyi7b99dtt4.cloudfront.net/free/main-logo.png" alt="EIMIFLIX" style="width: 115px;"> Admin area
             </a>
+            
+            <?php if (emflx_is_admin_logged()):?>
             <a class="w3-text-white w3-right w3-round" href="<?=site_url('admin/logout')?>">Logout</a>
+            <?php endif;?>
+
         </header>
 
         <main class="w3-container w3-padding-large">
