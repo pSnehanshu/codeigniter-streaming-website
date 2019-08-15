@@ -21,6 +21,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/layouts/footer');
     }
     
+    /**
+     * AUTH METHODS
+     */
     public function login() {
         $message = '';
 
@@ -52,5 +55,17 @@ class Admin extends CI_Controller
     public function logout() {
         emflx_admin_logout();
         redirect('admin/login');
+    }
+
+    /**
+     * Video METHODS
+     */
+    public function videos() {
+        $videos = $this->Object_model->get_all('video', 0, 20, true);
+
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/sidebar', array('active' => 'videos'));
+        $this->load->view('admin/video_list', array('videos' => $videos));
+        $this->load->view('admin/layouts/footer');
     }
 }

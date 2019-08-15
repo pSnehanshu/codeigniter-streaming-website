@@ -55,5 +55,5 @@
 
         </header>
 
-        <main class="w3-container w3-padding-large">
+        <main class="">
         

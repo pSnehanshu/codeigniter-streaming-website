@@ -28,7 +28,7 @@
 
 <div class="w3-panel">
     <ul class="tabs">
-        <a href="<?= site_url('admin/dashboard') ?>">
+        <a href="<?= site_url('admin') ?>">
             <li class="<?= $active == 'dashboard' ? 'active-tab' : '' ?>">Dashboard</li>
         </a>
         <a href="<?= site_url('admin/videos') ?>">
