@@ -68,4 +68,17 @@ class Admin extends CI_Controller
         $this->load->view('admin/video_list', array('videos' => $videos));
         $this->load->view('admin/layouts/footer');
     }
+
+    public function video($id = null) {
+        if ($id) {
+            $video = $this->Object_model->get($id, 'video', true);
+        } else {
+            $video = null;
+        }
+
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/sidebar', array('active' => 'videos'));
+        $this->load->view('admin/video_editor', array('video' => $video));
+        $this->load->view('admin/layouts/footer');
+    }
 }

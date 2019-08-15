@@ -22,6 +22,7 @@
                 </td>
                 <td>
                     <a href="<?= site_url('admin/video/' . $video->id) ?>"><?= htmlentities($video->title) ?></a>
+                    (<a href="<?=site_url('home/goto/'.$video->id)?>" target="_blank">Watch</a>)
                 </td>
                 <td>
                     <div class="<?= $video->is_premium == 1 ? 'w3-text-green' : 'w3-text-red' ?>"><?= $video->is_premium == 1 ? 'Yes' : 'No' ?></div>
