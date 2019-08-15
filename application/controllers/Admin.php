@@ -8,7 +8,7 @@ class Admin extends CI_Controller
         parent::__construct();
 
         if ($this->router->fetch_method() != 'login' && !emflx_is_admin_logged()) {
-            redirect('admin/login');
+            redirect('admin/login?next=' . urlencode(current_url()));
         }
 
 		$this->load->model('Object_model');
@@ -26,6 +26,10 @@ class Admin extends CI_Controller
      */
     public function login() {
         $message = '';
+        $next = $this->input->get('next');
+        if (!$next) {
+            $next = 'admin';
+        }
 
         // If password submitted
         if ($this->input->post('password')) {
@@ -35,7 +39,7 @@ class Admin extends CI_Controller
                 if ($admin_pass === $given_pass) {
                     // Login successful
                     emflx_admin_login();
-                    return redirect('admin');
+                    return redirect($next);
                 } else {
                     // Login failed
                     $message = 'Incorrect password';
@@ -47,7 +51,8 @@ class Admin extends CI_Controller
 
         $this->load->view('admin/layouts/header');
         $this->load->view('admin/login', array(
-            'message' => $message
+            'message' => $message,
+            'next' => $next
         ));
         $this->load->view('admin/layouts/footer');
     }
