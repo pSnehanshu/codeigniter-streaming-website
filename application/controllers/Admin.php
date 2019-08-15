@@ -16,6 +16,7 @@ class Admin extends CI_Controller
 
     public function index() {
         $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/sidebar', array('active' => 'dashboard'));
         $this->load->view('admin/dashboard');
         $this->load->view('admin/layouts/footer');
     }
