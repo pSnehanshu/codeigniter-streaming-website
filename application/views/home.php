@@ -134,31 +134,34 @@
                     var elm = $('#' + category.id);
                     elm.html(data);
 
-                    if (!elm.hasScrollBar('horizontal')) {
-                        return;
-                    }
+                    // Have to do this beacuse sometimes left-right buttons don't show
+                    setTimeout(() => {
+                        if (!elm.hasScrollBar('horizontal')) {
+                            return;
+                        }
 
-                    var leftScroll = $('<button>').html('&#9665;').addClass('btn border float-left d-none d-md-block').height(elm.height());
-                    var rightScroll = $('<button>').html('&#9655;').addClass('btn border float-right d-none d-md-block').height(elm.height());
+                        var leftScroll = $('<button>').html('&#9665;').addClass('btn border float-left d-none d-md-block').height(elm.height());
+                        var rightScroll = $('<button>').html('&#9655;').addClass('btn border float-right d-none d-md-block').height(elm.height());
 
-                    // Add functionality
-                    var scrollAmt = 500;
-                    var scrollSpeed = 400;
-                    leftScroll.click(function(e) {
-                        //let newScroll = elm.scrollLeft() - scrollAmt;
-                        elm.stop().animate({
-                            scrollLeft: elm.scrollLeft() - scrollAmt
-                        }, scrollSpeed);
-                    });
-                    rightScroll.click(function(e) {
-                        //let newScroll = elm.scrollLeft() + scrollAmt;
-                        elm.stop().animate({
-                            scrollLeft: elm.scrollLeft() + scrollAmt
-                        }, scrollSpeed);
-                    });
+                        // Add functionality
+                        var scrollAmt = 500;
+                        var scrollSpeed = 400;
+                        leftScroll.click(function(e) {
+                            //let newScroll = elm.scrollLeft() - scrollAmt;
+                            elm.stop().animate({
+                                scrollLeft: elm.scrollLeft() - scrollAmt
+                            }, scrollSpeed);
+                        });
+                        rightScroll.click(function(e) {
+                            //let newScroll = elm.scrollLeft() + scrollAmt;
+                            elm.stop().animate({
+                                scrollLeft: elm.scrollLeft() + scrollAmt
+                            }, scrollSpeed);
+                        });
 
-                    elm.parent().prepend(leftScroll);
-                    elm.parent().prepend(rightScroll);
+                        elm.parent().prepend(leftScroll);
+                        elm.parent().prepend(rightScroll);
+                    }, 100);
                 }
             )
         });
