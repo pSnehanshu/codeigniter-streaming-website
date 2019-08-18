@@ -46,19 +46,30 @@
         function setUserAvatar(markup = {}) {
             $('#user-avatar').html(markup.markup);
         }
+        //util function to check if an element has a scrollbar present
+        jQuery.fn.hasScrollBar = function(direction) {
+            if (direction == 'vertical') {
+                return this.get(0).scrollHeight > this.innerHeight();
+            } else if (direction == 'horizontal') {
+                return this.get(0).scrollWidth > this.innerWidth();
+            }
+            return false;
+
+        }
     </script>
-    
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143659616-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'UA-143659616-1');
     </script>
-    
+
 </head>
 
 <body class="d-flex flex-column h-100">

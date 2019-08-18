@@ -42,6 +42,10 @@
     .thumbgrow:hover {
         transform: scale(1.1);
     }
+
+    .vidlist {
+        overflow: auto;
+    }
 </style>
 
 <div class="bg-dark">
@@ -51,8 +55,8 @@
 
                 <?php $i = 0;
                 foreach ($banners as $banner) : ?>
-                    <li data-target="#mainbanner" data-slide-to="<?= $i ?>" class="<?= $i == 0 ? 'active' : '' ?>"></li>
-                    <?php $i++;
+                <li data-target="#mainbanner" data-slide-to="<?= $i ?>" class="<?= $i == 0 ? 'active' : '' ?>"></li>
+                <?php $i++;
                 endforeach; ?>
 
             </ol>
@@ -60,22 +64,22 @@
 
                 <?php $i = 0;
                 foreach ($banners as $banner) : ?>
-                    <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
 
-                        <?php if (!empty(trim($banner->link))) : ?>
-                            <a href="<?= site_url($banner->link) ?>">
-                                <img class="d-block w-100" src="<?= htmlentities($banner->image) ?>">
-                            </a>
-                        <?php else : ?>
-                            <img class="d-block w-100" src="<?= htmlentities($banner->image) ?>">
-                        <?php endif; ?>
+                    <?php if (!empty(trim($banner->link))) : ?>
+                    <a href="<?= site_url($banner->link) ?>">
+                        <img class="d-block w-100" src="<?= htmlentities($banner->image) ?>">
+                    </a>
+                    <?php else : ?>
+                    <img class="d-block w-100" src="<?= htmlentities($banner->image) ?>">
+                    <?php endif; ?>
 
-                        <?php if (!empty(trim($banner->caption))) : ?>
-                            <div class="carousel-caption d-none d-md-block"><?= $banner->caption ?></div>
-                        <?php endif; ?>
+                    <?php if (!empty(trim($banner->caption))) : ?>
+                    <div class="carousel-caption d-none d-md-block"><?= $banner->caption ?></div>
+                    <?php endif; ?>
 
-                    </div>
-                    <?php $i++;
+                </div>
+                <?php $i++;
                 endforeach; ?>
 
             </div>
@@ -96,11 +100,11 @@
     const categories = [];
 </script>
 <div class="container-fluid">
-    <div class="mb-5">
+    <!-- <div class="mb-5">
         <h2>
             <a class="text-dark" href="<?= site_url('home/category/movies') ?>">Movies</a>
         </h2>
-        <div id="category-vids-movies" class="py-3">
+        <div id="category-vids-movies" class="vidlist d-flex">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -116,7 +120,7 @@
         <h2>
             <a class="text-dark" href="<?= site_url('home/category/short-videos') ?>">Short videos</a>
         </h2>
-        <div id="category-vids-short-videos" class="py-3">
+        <div id="category-vids-short-videos" class="vidlist d-flex">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -132,7 +136,7 @@
         <h2>
             <a class="text-dark" href="<?= site_url('home/category/music-videos') ?>">Music videos</a>
         </h2>
-        <div id="category-vids-music-videos" class="py-3">
+        <div id="category-vids-music-videos" class="vidlist d-flex">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -148,7 +152,7 @@
         <h2>
             <a class="text-dark" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
         </h2>
-        <div id="category-vids-comedy" class="py-3">
+        <div id="category-vids-comedy" class="vidlist d-flex">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -160,33 +164,68 @@
             })
         </script>
     </div>
-    
-    <?php /*foreach ($categories as $category) : $id = "category-vids-" . $category->slug; ?>
-        <div class="mb-5">
-            <h2>
-                <a class="text-dark" href="<?= site_url('home/category/' . $category->slug) ?>"><?= htmlentities($category->title) ?></a>
-            </h2>
-            <div id="<?= $id ?>" class="py-3">
+     -->
+    <?php foreach ($categories as $category) : $id = "category-vids-" . $category->slug; ?>
+    <div class="mb-5">
+        <h2>
+            <a class="text-dark" href="<?= site_url('home/category/' . $category->slug) ?>"><?= htmlentities($category->title) ?></a>
+        </h2>
+        <div>
+            <div id="<?= $id ?>" class="vidlist d-flex">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>
-            <script>
-                categories.push({
-                    id: '<?= $id ?>',
-                    catid: '<?= $category->id ?>'
-                })
-            </script>
         </div>
 
-    <?php endforeach;*/ ?>
+        <script>
+            categories.push({
+                id: '<?= $id ?>',
+                catid: '<?= $category->id ?>'
+            })
+        </script>
+    </div>
+
+    <?php endforeach; ?>
 
 </div>
 
 <script>
     $(function() {
         categories.forEach(category => {
-            $('#' + category.id).load('<?= site_url('home/ajax_category/') ?>' + category.catid);
+            //$('#' + category.id).load('<?= site_url('home/ajax_category/') ?>' + category.catid);
+            $.get('<?= site_url('home/ajax_category/') ?>' + category.catid,
+                function(data, status, jqXhr) {
+                    var elm = $('#' + category.id);
+                    elm.html(data);
+
+                    if (!elm.hasScrollBar('horizontal')) {
+                        return;
+                    }
+
+                    var leftScroll = $('<button>').html('&#9665;').addClass('btn border float-left d-none d-md-block').height(elm.height());
+                    var rightScroll = $('<button>').html('&#9655;').addClass('btn border float-right d-none d-md-block').height(elm.height());
+
+                    // Add functionality
+                    var scrollAmt = 500;
+                    var scrollSpeed = 400;
+                    leftScroll.click(function(e) {
+                        //let newScroll = elm.scrollLeft() - scrollAmt;
+                        elm.stop().animate({
+                            scrollLeft: elm.scrollLeft() - scrollAmt
+                        }, scrollSpeed);
+                    });
+                    rightScroll.click(function(e) {
+                        //let newScroll = elm.scrollLeft() + scrollAmt;
+                        elm.stop().animate({
+                            scrollLeft: elm.scrollLeft() + scrollAmt
+                        }, scrollSpeed);
+                    });
+
+                    elm.parent().prepend(leftScroll);
+                    elm.parent().prepend(rightScroll);
+                }
+            )
         });
     });
 </script>
