@@ -22,8 +22,8 @@
         </a>
     <?php endforeach; ?>
 <?php else : ?>
-    <div class="text-center">
-        Nothing found here. Keep looking back.
+    <div class="text-center p-5">
+        <p>Nothing found here. Keep looking back.</p>
     </div>
 <?php endif; ?>
 
