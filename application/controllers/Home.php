@@ -18,11 +18,18 @@ class Home extends CI_Controller
 
 		// Load categories
 		$categories = $this->Object_model->get_all('category');
+
+		// Custom ordering of the categories
+		$ordered_cats = array();
+		$ordered_cats[0] = $categories[3];
+		$ordered_cats[1] = $categories[2];
+		$ordered_cats[2] = $categories[1];
+		$ordered_cats[3] = $categories[0];
 		
 		$this->load->view('layouts/header', array('title' => 'Enjoy free and premium shows, videos and movies'));
 		$this->load->view('home', array(
 			'banners' => $banners,
-			'categories' => $categories,
+			'categories' => $ordered_cats,
 		));
 		$this->load->view('layouts/footer');
 	}
