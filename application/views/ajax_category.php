@@ -1,4 +1,10 @@
 <?php if (count($children) > 0) : ?>
+    <?php if (count($children) > 1) : ?>
+        <div class="d-inline-flex d-md-none border p-5 mr-3">
+            <span class="my-auto font-weight-bold">Swipe left &#9665;<span>
+        </div>
+    <?php endif; ?>
+
     <?php foreach ($children as $object) : ?>
         <a href="<?= site_url('home/goto/' . $object->id) ?>">
             <div class="d-inline-flex center-title mr-3" style="max-width: 100%;">
@@ -6,9 +12,9 @@
                     <div class="object-type bg-dark text-light px-2 show-on-hover"><?= strtolower($object->type) ?></div>
                     <div class="object-title bg-dark text-light px-3 show-on-hover"><?= $object->title ?></div>
                     <img class="thumbgrow d-none d-lg-block" src="<?= $object->thumbnail ?>" style="height:200px;">
-                    <img class="d-lg-none" src="<?= $object->thumbnail ?>" style="height:200px;">
                 </div>
                 <div class="d-md-none p-2">
+                    <img class="mb-2" src="<?= $object->thumbnail ?>" style="height:200px;">
                     <p><?= $object->title ?><p>
                     <p class="text-dark"><?=emflx_trim_description($object->description)?></p>
                 </div>
