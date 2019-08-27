@@ -97,6 +97,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('home/category/comedy') ?>">Comedy</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= site_url('home/plans')  ?>">Pricing</a>
+                    </li>
                 </ul>
                 <div class="mt-2 mt-md-0 ml-2 ml-md-0" id="user-avatar"></div>
             </div>
