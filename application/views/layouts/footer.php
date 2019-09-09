@@ -12,6 +12,9 @@
             <a href="<?= site_url('home/page/terms') ?>">Terms</a> &middot;
             <a href="<?= site_url('home/plans')  ?>">Pricing</a>
         </p>
+        <p class="d-flex justify-content-center" style="font-size: 13px;">
+            Designed and developed by <a href="https://www.freelancer.com/u/snehanshuphukon" target="_blank" class="ml-1" title="Hire me!">Snehansu Phukon</a>
+        </p>
     </div>
 </footer>
 <!-- FOOTER end -->
